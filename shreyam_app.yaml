@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: shreyam-apache-deployment
+  namespace: aegocd
+
+spec:
+  project: default
+
+  source:
+     repoURL: https://github.com/Shreyam2001/Argo.git
+     targetRevision: HEAD
+  
+  destination: 
+   server: https://kubernetes.default.svc
+   namespace: shreyam
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+
+  automated:
+    selfHeal: true
+    prune: true
